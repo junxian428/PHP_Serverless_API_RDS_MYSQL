@@ -3,7 +3,7 @@
 require __DIR__ . '/vendor/autoload.php';
 
 // Assuming you have MySQL credentials
-$servername = ".us-east-1.rds.amazonaws.com:3306";
+$servername = ".com:3306";
 $username = "root";
 $password = "";
 $dbname = "";
@@ -82,15 +82,20 @@ function handlePOST($event, $path, $conn) {
 function handlePUT($event, $path, $conn) {
     if ($path === '/hello') {
         $putData = json_decode($event['body'], true);
+        $id = $putData['id'] ?? null;
         $name = $putData['name'] ?? 'world';
 
-        // Use prepared statement to avoid SQL injection
-        $stmt = $conn->prepare("UPDATE users SET name=? WHERE id=?");
-        $stmt->bind_param("si", $name, $id);
-        $stmt->execute();
+        if ($id !== null) {
+            // Use prepared statement to avoid SQL injection
+            $stmt = $conn->prepare("UPDATE users SET name=? WHERE id=?");
+            $stmt->bind_param("si", $name, $id);
+            $stmt->execute();
 
-        $stmt->close();
-        return json_encode(['message' => 'PUT Request: Hello ' . $name]);
+            $stmt->close();
+            return json_encode(['message' => 'PUT Request: Updated user with ID ' . $id . ' to name ' . $name]);
+        } else {
+            return json_encode(['message' => 'Invalid ID']);
+        }
     }
 
     return json_encode(['message' => 'Invalid path']);
