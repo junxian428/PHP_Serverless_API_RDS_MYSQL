@@ -34,13 +34,30 @@ https://.us-east-1.amazonaws.com/hello?name=junxian428
 
 2. POST METHOD: https://.amazonaws.com/hello?name=junxian428
 
+{
+    "name": "junxian428"
+}
+
+
 ![image](https://github.com/junxian428/PHP_Serverless_API_RDS_MYSQL/assets/58724748/9ce3f6bd-312b-4ad6-bff8-8a1b7d54d5f3)
 
 After post name junxian428
 
 ![image](https://github.com/junxian428/PHP_Serverless_API_RDS_MYSQL/assets/58724748/cfe06e76-f55c-4d6d-b7d5-fb60525a85b7)
 
-3. PUT METHOD
+3. PUT METHOD: https://.us-east-1.amazonaws.com/hello
 
-4. DELETE METHOD
+{
+    "id": 1,
+    "name": "New Name"
+}
+
+
+
+![image](https://github.com/junxian428/PHP_Serverless_API_RDS_MYSQL/assets/58724748/28ae5adc-ccf8-4c3f-a4e0-9bca99c97a92)
+
+4. DELETE METHOD: https://.us-east-1.amazonaws.com/hello?name=New Name
+
+![image](https://github.com/junxian428/PHP_Serverless_API_RDS_MYSQL/assets/58724748/4e5ebae2-4ff1-4a3e-904b-cd22a454da59)
+
 
